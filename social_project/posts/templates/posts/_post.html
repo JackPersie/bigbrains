@@ -1,0 +1,24 @@
+<div class="media p3">
+    <!-- if u click the username it will take u too the posts the user has posted kinda user profile -->
+	<h3 class="mr-5 "><a class='p4'href="{% url 'posts:for_user' username=post.user.username %}">#{{ post.user.username }} -> </a></h3>
+
+	<div class="media-body">
+		<!-- <strong>{{ post.user.username }}</strong> -->
+		<h5>{{ post.message_html|safe }}</h5>
+            <!-- time the post created at -->
+			<time id='p2' class="time "><a class="p2" href="{% url 'posts:single' username=post.user.username pk=post.pk %}">{{ post.created_on }}</a></time>
+			{% if post.group %}
+			<span class="group-name">in <a href="#">{{ post.group.name }}</a></span>
+			{% endif %}
+		</h5>
+
+		<div class="media-footer">
+			{% if user.is_authenticated and post.user == user and not hide_delete %}
+				<a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-simple">
+					<span class="fa fa-remove text-danger" aria-hidden="true"></span>
+					<span class="btn btn-default btn-custom p1 icon-label">Delete</span><br><br><br>
+				</a>
+			{% endif %}
+		</div>
+	</div>
+</div>

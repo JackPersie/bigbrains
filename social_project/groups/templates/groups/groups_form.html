@@ -1,0 +1,19 @@
+{% extends 'groups/groups_base.html' %}
+{% load bootstrap4 %}
+{% block pregroup %} 
+
+<h1 class="jumbotron g5">So <br> you <br> chose <br> to do one <br> better <br> and <br> start one ? <br>poggers 🤍</h1>
+
+{% endblock %}
+
+{% block contentgroup %}
+
+
+<div>
+<form id="group-form" action="{% url 'groups:create' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' form_group_class='medium' %}
+    <input  id="g4" class='btn btn-default btn-custom g4' type="submit" value="Lets Go !">
+</form>
+</div>
+{% endblock %}

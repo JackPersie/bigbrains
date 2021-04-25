@@ -1,0 +1,46 @@
+{% extends 'posts/post_base.html' %}
+{% block prepost %}
+
+<!-- <div class="col-md-10">
+    {% if user.is_authenticated %}
+    <div class="gii card bg-custom text-white ">
+        <div class="card-body content1">
+            <h4 class="title"> Groups You are part of</h4>
+            <ul class='list-unstyled'>
+            {% for members in user_groups %} list of group user belongs to -->
+            <!-- <li class="group li-with"><a class="gi" href="{% url 'groups:single' slug=members.slug %}">{{ members.slug }}</a></li>
+			{% endfor %}
+            </ul>
+        </div>
+    </div> <br>
+    {% endif %}
+    <div class="gii card bg-custom text-white ">
+        <div class=" card-body content1">
+            <h4 class="title">
+            All Groups     
+            </h4>
+            <ul class='list-unstyled'>
+
+            {% for group in all_groups %}
+            <li ><a class="gi" href="{% url 'groups:single' slug=group.slug %}">{{ group.slug }}</a></li>
+            https://www.udemy.com/course/python-and-django-full-stack-web-developer-bootcamp/learn/lecture/7133892#questions/3081816
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>  -->
+
+
+<!-- {% endblock %}  -->
+
+{% block postcontent %}
+<div class="gii card bg-custom text-white ">
+    <div class=" card-body content1">
+        <div class='col-md-10'>
+            {% for post in post_list %}
+                {% include "posts/_post.html" %}
+            {% endfor %}
+</div>
+</div>
+</div>
+{% endblock %} 

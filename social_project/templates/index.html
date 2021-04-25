@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1 class="container">  Welcome back to the Big Brains <br> {{user|title}} ! </h1><br>
+<h4 class="container">You already know this but just in case <br><br> This is an old school way of having fun in groups of all kinds i suppose, where u can join a group and share your thoughts ! </h4>
+{% else %}
+<h1 class="container">  Welcome to the Big Brains <br> Amigo ! </h1><br>
+<h4 class="container">This is an old school way of having fun in groups of all kinds i suppose, where u can join a group and share your thoughts ! </h4>
+{% endif %}
+{% endblock %}

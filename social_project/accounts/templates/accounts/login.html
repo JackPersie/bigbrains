@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<!-- installed a package called bootstrap4 
+https://pypi.org/project/django-bootstrap4/
+when we used django's own forms we couldnt make it look better
+with this we can do so.
+install it and register boostrap4 in settings, app
+load bootstrap4 with extends 
+instead of just using {{form}} or {{form.as_p}}
+{% bootstrap_form form %}
+ez-->
+
+<div class="container">
+    <h1> Login  </h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form layout='horizontal' form_group_class='medium' %}
+        
+        <input id='acc1' type="submit" class="btn btn-default btn-custom" value="Login">
+    </form>
+</div>
+
+{% endblock %}

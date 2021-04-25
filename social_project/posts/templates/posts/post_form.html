@@ -1,0 +1,20 @@
+{% extends 'posts/post_base.html' %}
+{% load bootstrap4 %}
+
+
+{% block prepost %}
+<h1 class="jumbotron p5"> So <br> you <br> have <br> something <br> cooking <br> in <br> your brain ? <br>Kap ! </h1>
+{% endblock %}
+
+
+{% block postcontent %}
+
+<div>
+<form id="post-form" action="{% url 'posts:create' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' form_group_class='medium' %}
+    <input class='btn btn-default btn-custom p6 ' type="submit" value="Post !">
+    
+</form>
+</div>
+{% endblock %}

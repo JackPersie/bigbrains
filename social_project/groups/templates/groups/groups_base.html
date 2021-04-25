@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- so we kinda created more blocks for ease of use -->
+
+            <!-- to see if u are in group or not. if not u cant join-->
+            {% block pregroup %} {% endblock %}
+
+            <!-- content of the group -->
+            {% block contentgroup %} {% endblock %}
+
+            <!-- to post in group -->
+            {% block postgroup %} {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+    

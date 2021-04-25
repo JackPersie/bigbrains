@@ -1,0 +1,73 @@
+{% extends 'groups/groups_base.html' %}
+{% block pregroup %}
+
+<!-- group.name comes from the model Group
+remember group_details.html is the standard name for
+html page, model name in lower+view name and it 
+represents
+class SingleGroupView(generic.DeatailView):
+    model = Group
+model is linked to Group -->
+
+<h1 class="container">{{group.name|title}}™
+<h3 class='container'>Chads in this group ==> {{group.members.count}}</h3>
+
+<div class="group-det container">
+    
+    <!-- since only if logged in u can see the groups page,
+    we check if user in already in the group if so he can leave the group if not he can join -->
+    {% if user.is_authenticated and user in group.members.all %}
+
+        <a href="{% url 'groups:leave' slug=group.slug %}"
+        class="btn btn-default btn-custom g7">Leave Group 🚫</a>
+    
+    <!-- to make sure someone cant join join a group without logging in -->
+    {% elif user.is_authenticated and user not in group.members.all  %}
+        
+    <a href="{% url 'groups:join' slug=group.slug %}"
+    class="btn btn-default btn-custom g7">Join Group 💨</a>
+
+    {% else %}
+    <h2>You need to login to join a group Bud !</h2>
+
+    {% endif %}
+        
+
+</div>
+{% endblock %}
+
+<!-- this is for what is insdie the group -->
+{% block contentgroup %} 
+
+<div class=" g8 col-md-6 jumbotron">
+
+    <!-- if group has no posts 
+    group.posts =  it comes from the Post model in posts app
+where we assigned a foriegn key for groups with a related name called group
+posts. 
+When you assign a foreignKey to another model, that another model can call its objects with the related_name.
+so we use it to call posts here-->
+
+
+    {% if group.posts.count == 0 %}
+    
+    <h4>Snap ! This seems to be a dead group 😭</h1>
+        
+    {% else %}
+    
+    {% for post in group.posts.all %}
+        
+    <!-- this is new, include is kinda extend but putting html in the middle 
+    we can map our urls with _post.html here
+but this is cleaner
+so in _post.html we kinda clean some mess and inject that html
+in various other htmls using include :D -->
+    
+    {% include 'posts/_post.html' %}
+    {% endfor %}
+    {% endif %}
+        
+
+</div>
+
+{% endblock %}

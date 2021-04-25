@@ -1,0 +1,59 @@
+{% extends 'groups/groups_base.html' %}
+{% block pregroup %}
+
+<!-- this is just the pre group -->
+<div class="col-md-6">
+    <div class="group-content">
+        <!-- check if user is logged in if so takes them back to all the posts user has posted -->
+        {% if user.is_authenticated %}
+            <h2>Hey ! 
+                <a class='g1' href="{% url 'posts:for_user' username=user.username %}">
+                #{{user.username}}
+                </a> <br><br>
+                Wanna join a journey ? Check your right ! <br><br>
+                 Or do one better and start one ?<br> click create group <br><br>
+            </h2>      
+        {% else %}
+            <!-- if not logged in just this -->
+        <h2>Groups</h2>
+        <p>Welcome to groups</p>      
+        {% endif %}      
+    </div>
+
+    <!-- if user is logged in they can create their own group-->
+    {% if user.is_authenticated %}
+    <a href="{% url 'groups:create' %}" class=" g2 btn btn-default btn-custom"> Create Clan </a>
+    {% endif %}
+</div>
+{% endblock %}
+
+<!-- the list of all the groups -->
+{% block contentgroup %}
+    <div class="col-md-4">
+        <div class = "group-list">
+            
+            <!-- object_list =  This template will be rendered against a context containing a variable 
+                called object_list that contains all the Model objects.
+            we can change like we usually do with context_object_name -->
+            {% for group in object_list %}
+                <a href="{% url 'groups:single' slug=group.slug %}" class="g3 list-group-item list-group-item-action group-list2"> <!--slug acts as a prim key-->
+                    <h3 class="group-list-3">{{group.name|title}}</h3> <!--if we click the group.name it will take us to groups:single ie the details of the grup-->
+                    <div class="group-list-4 container-fluid">
+                        {{group.description_html|safe}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="badge">{{group.members.count}}</span>
+                                member{{group.members.count|pluralize}} 
+                            </div>
+                            <div class="col-md-6">
+                                <span class="badge">{{group.posts.count}}</span>
+                                post{{group.posts.count|pluralize}}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}   
+        </div>
+    </div>
+{% endblock %}
+    
